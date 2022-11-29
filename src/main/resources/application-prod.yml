@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.153.128:3306/meteorologic?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Clpz@#$299
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+#mybatis-plush配置
+mybatis-plus:
+  configuration:
+    #开启驼峰映射
+    map-underscore-to-camel-case: true
+    #封装为map的时候不过滤为null值的字段名称
+    call-setters-on-nulls: true

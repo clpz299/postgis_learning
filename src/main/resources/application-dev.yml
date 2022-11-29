@@ -1,0 +1,38 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://192.168.153.128:3306/meteorologic?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: Clpz@#$299
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+
+spring:
+  datasource:
+    dynamic:
+      primary: master # 配置默认数据库
+      datasource:
+        master: # 数据源1配置
+          type: com.zaxxer.hikari.HikariDataSource
+          url: jdbc:postgresql://192.168.153.128:5432/general
+          username: pgsql
+          password: pgsql
+          driver-class-name: org.postgresql.Driver
+        slave: # 数据源2配置
+          type: com.zaxxer.hikari.HikariDataSource
+          url: jdbc:mysql://192.168.153.128:3306/meteorologic?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: Clpz@#$299
+          driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+#mybatis-plush配置
+mybatis-plus:
+  configuration:
+    #开启驼峰映射
+    map-underscore-to-camel-case: true
+    #封装为map的时候不过滤为null值的字段名称
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

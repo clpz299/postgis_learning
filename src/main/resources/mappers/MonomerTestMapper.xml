@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.general.template.mapper.MonomerTestMapper">
+    <insert id="saveBatchList" parameterType="com.general.template.pgeo.entity.Monomer">
+        insert into monomer(name,type,floor_heig,base_heig,top_heig,geog,color,building_no,community_name,unit,door_no,floor_name,viewing_angle)
+        values
+        <foreach collection="monomerList" item="item" separator=",">
+            (
+            #{item.name},
+            #{item.type},
+            #{item.floorHeig},
+            #{item.baseHeigh},
+            #{item.topHeight},
+            ST_GeomFromText(#{item.geog}, 4326),
+            #{item.color},
+            #{item.buildingNo},
+            #{item.communityName},
+            #{item.unit},
+            #{item.doorNo},
+            #{item.floorName},
+            #{item.viewingAngle})
+        </foreach>
+    </insert>
+
+</mapper>
